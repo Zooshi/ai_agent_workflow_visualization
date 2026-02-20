@@ -7,9 +7,8 @@ vi.mock('../api/client');
 describe('useWorkflow', () => {
   const fakeWorkflow = {
     description: 'An agentic pipeline.',
-    nodes: [{ id: '1', type: 'agent', label: 'Agent', position: { x: 0, y: 0 } }],
+    nodes: [{ id: '1', type: 'agent', label: 'Agent', detail: 'Does research.', position: { x: 0, y: 0 } }],
     edges: [],
-    stepDetails: { '1': 'Does research.' },
   };
 
   beforeEach(() => {

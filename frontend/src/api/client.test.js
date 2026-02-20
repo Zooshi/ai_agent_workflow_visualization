@@ -6,7 +6,7 @@ describe('optimizeWorkflow', () => {
   });
 
   test('sends POST with prompt and returns parsed JSON', async () => {
-    const fakeWorkflow = { description: 'test', nodes: [], edges: [], stepDetails: {} };
+    const fakeWorkflow = { description: 'test', nodes: [], edges: [] };
     global.fetch.mockResolvedValue({
       ok: true,
       json: async () => fakeWorkflow,

@@ -5,7 +5,6 @@ export function useWorkflow() {
   const [nodes, setNodes] = useState([]);
   const [edges, setEdges] = useState([]);
   const [description, setDescription] = useState('');
-  const [stepDetails, setStepDetails] = useState({});
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -20,7 +19,6 @@ export function useWorkflow() {
       setNodes(workflow.nodes);
       setEdges(workflow.edges);
       setDescription(workflow.description);
-      setStepDetails(workflow.stepDetails);
       setCurrentWorkflow(workflow);
       setHistory(prev => [...prev, { prompt, workflow }]);
     } catch (err) {
@@ -30,5 +28,5 @@ export function useWorkflow() {
     }
   }, [currentWorkflow]);
 
-  return { nodes, edges, description, stepDetails, history, loading, error, submitPrompt };
+  return { nodes, edges, description, history, loading, error, submitPrompt };
 }

@@ -8,7 +8,7 @@ import './App.css';
 
 export default function App() {
   const {
-    nodes, edges, description, stepDetails,
+    nodes, edges, description,
     history, loading, error, submitPrompt,
   } = useWorkflow();
 
@@ -49,7 +49,7 @@ export default function App() {
         {selectedNode && (
           <NodeDetailPanel
             node={selectedNode}
-            detail={stepDetails[selectedNodeId]}
+            detail={rawNode?.detail}
             onClose={() => setSelectedNodeId(null)}
           />
         )}

@@ -24,9 +24,8 @@ app.use('/api/optimize', optimizeRouter);
 
 const mockWorkflow = {
   description: 'An agentic pipeline.',
-  nodes: [{ id: '1', type: 'agent', label: 'Agent', position: { x: 0, y: 0 } }],
+  nodes: [{ id: '1', type: 'agent', label: 'Agent', detail: 'Does research.', position: { x: 0, y: 0 } }],
   edges: [],
-  stepDetails: { '1': 'Does research.' },
 };
 
 beforeEach(() => {
@@ -51,7 +50,6 @@ describe('POST /api/optimize', () => {
       description: expect.any(String),
       nodes: expect.any(Array),
       edges: expect.any(Array),
-      stepDetails: expect.any(Object),
     });
   });
 
