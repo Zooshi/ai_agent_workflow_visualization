@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useRef, useState } from 'react';
+import { useWorkflow } from './hooks/useWorkflow';
+import { PromptPanel } from './components/PromptPanel';
+import { WorkflowCanvas } from './components/WorkflowCanvas';
+import { NodeDetailPanel } from './components/NodeDetailPanel';
+import { Toolbar } from './components/Toolbar';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const {
+    nodes, edges, description, stepDetails,
+    history, loading, error, submitPrompt,
+  } = useWorkflow();
+
+  const [selectedNodeId, setSelectedNodeId] = useState(null);
+  const canvasRef = useRef(null);
+
+  const rawNode = nodes.find(n => n.id === selectedNodeId);
+  const selectedNode = rawNode
+    ? { id: rawNode.id, data: { label: rawNode.label, type: rawNode.type } }
+    : null;
+
+  function handleNodeClick(id) {
+    setSelectedNodeId(prev => (prev === id ? null : id));
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <Toolbar
+        description={description}
+        canvasRef={canvasRef}
+        hasWorkflow={nodes.length > 0}
+      />
+      <div className="app__body">
+        <PromptPanel
+          history={history}
+          loading={loading}
+          error={error}
+          onSubmit={submitPrompt}
+        />
+        <main className="app__canvas">
+          <WorkflowCanvas
+            nodes={nodes}
+            edges={edges}
+            onNodeClick={handleNodeClick}
+            canvasRef={canvasRef}
+          />
+        </main>
+        {selectedNode && (
+          <NodeDetailPanel
+            node={selectedNode}
+            detail={stepDetails[selectedNodeId]}
+            onClose={() => setSelectedNodeId(null)}
+          />
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
-
-export default App
