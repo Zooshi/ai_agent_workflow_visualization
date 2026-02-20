@@ -1,0 +1,32 @@
+.workflow-node {
+  background: #1e1e2e;
+  border: 2px solid var(--node-color);
+  border-radius: 8px;
+  padding: 8px 16px;
+  min-width: 160px;
+  text-align: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.workflow-node--selected,
+.workflow-node:hover {
+  box-shadow: 0 0 0 2px var(--node-color), 0 4px 24px rgba(0,0,0,0.4);
+}
+
+.workflow-node__badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.workflow-node__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #e8e8e8;
+}
