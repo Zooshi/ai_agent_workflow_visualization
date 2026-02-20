@@ -11,7 +11,7 @@ const SYSTEM_PROMPT = `You are an expert AI systems architect. Your job is to an
 Given a workflow description, produce a structured workflow with:
 - A 2-4 paragraph description of the optimized agentic workflow
 - Nodes representing each step (use types: trigger, agent, tool, decision, output)
-- Edges showing the flow between steps with descriptive labels
+- Edges showing the flow between steps. Each edge MUST include a "label" field — use a short descriptive string (e.g. "sends results") or null if no label is needed. Never omit the label field.
 - stepDetails: for each node ID, a detailed explanation of what it does, what AI agent or tool powers it, and its inputs and outputs
 
 Position nodes in a top-to-bottom DAG layout with y increments of 120px per level. Multiple nodes at the same level share the same y value, spaced 200px apart on the x axis.

@@ -11,7 +11,7 @@ const EdgeSchema = z.object({
   id: z.string(),
   source: z.string(),
   target: z.string(),
-  label: z.string().optional(),
+  label: z.string().nullable(),
 });
 
 const WorkflowSchema = z.object({

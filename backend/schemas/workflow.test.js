@@ -36,10 +36,10 @@ describe('WorkflowSchema', () => {
     expect(result.success).toBe(false);
   });
 
-  test('edge label is optional', () => {
+  test('edge label can be null', () => {
     const workflow = {
       ...validWorkflow,
-      edges: [{ id: 'e1-2', source: '1', target: '2' }],
+      edges: [{ id: 'e1-2', source: '1', target: '2', label: null }],
     };
     const result = WorkflowSchema.safeParse(workflow);
     expect(result.success).toBe(true);
